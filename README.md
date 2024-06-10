@@ -41,3 +41,12 @@ You can run tests directly using the `prove` tool:
 This is implemented as a CLI at this time
 
     $ ./bin/sf_food_trucks.pl
+
+## Next Steps
+
+Currently this is only a minimal implementation.
+
+The next steps would be
+* Active Permits only
+* Geo Location
+* Additional Search terms
