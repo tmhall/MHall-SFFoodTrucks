@@ -21,3 +21,21 @@ The source data is located at
 This project amuses me because I do live in SF.  I'm therefore focussing my solution on something that would be immediately useful for myself, being able to geo locate food trucks.
 
 I'm doing just a CLI for now as that allows me to focus on features instead of delivery platform.  I would like there to be filters for "open now" and for style of food.  However, my casual observation of the data shows that the open times would require sanitizing, so I'm probably just going to focus on geo location for initial work.
+
+## Dependencies
+
+This relies on the following cpan modules outside of core:
+* Text::CSV
+* Tie::IxHash
+
+## Testing
+
+You can run tests directly using the `prove` tool:
+
+    $ prove -lv t/SFFoodTrucks.t
+
+## Usage
+
+This is implemented as a CLI at this time
+
+    $ ./bin/sf_food_trucks.pl
