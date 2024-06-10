@@ -185,6 +185,22 @@ sub expiration_date {
     return $self->{expiration_date};
 }
 
+### 
+
+sub is_active {
+    my $self = shift;
+
+    my @active_statuses = qw(
+        APPROVED
+        ISSUED
+    );
+
+    return !!grep { $self->status && $self->status eq $_ } @active_statuses;
+
+    # Could also add a filter for expiration_date, but I'm betting that would automatically
+    # result in a change in status anyway.
+}
+
 ###
 
 sub TO_JSON {

@@ -23,11 +23,20 @@ my $DEFAULT_FOOD_TRUCK_CSV_FILE = path(__FILE__)->parent(3)->child('db/SF_Mobile
 sub list_sf_food_trucks {
     my %args = @_;
 
-    my $csv_file = delete $args{csv_file};
+    my $csv_file  = delete $args{csv_file};
+    my $is_active = delete $args{is_active};
 
     confess "Unrecognized parameters: @{[ keys %args ]}" if keys %args;
 
-    my @food_trucks = _load_sf_food_trucks_from_csv( csv_file => $csv_file );
+    my @all_food_trucks = _load_sf_food_trucks_from_csv( csv_file => $csv_file );
+
+    my @food_trucks;
+
+    for my $food_truck (@all_food_trucks) {
+        next if $is_active && !$food_truck->is_active;
+
+        push @food_trucks, $food_truck;
+    }
 
     return @food_trucks;
 }
