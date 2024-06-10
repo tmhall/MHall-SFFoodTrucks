@@ -47,6 +47,5 @@ This is implemented as a CLI at this time
 Currently this is only a minimal implementation.
 
 The next steps would be
-* Active Permits only
 * Geo Location
 * Additional Search terms
