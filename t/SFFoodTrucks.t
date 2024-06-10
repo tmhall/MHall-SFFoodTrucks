@@ -11,7 +11,6 @@ use FindBin qw($Bin $Script);
 use Path::Tiny qw(path tempdir);
 use POSIX qw(strftime);
 use Text::CSV qw(csv);
-use YAML qw(Dump);
 
 use lib qq{@{[ path($Bin)->parent->child('lib') ]}};
 
