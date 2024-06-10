@@ -27,6 +27,7 @@ I'm doing just a CLI for now as that allows me to focus on features instead of d
 This relies on the following cpan modules outside of core:
 * JSON
 * Path::Tiny
+* Test::Deep
 * Text::CSV
 * Tie::IxHash
 
