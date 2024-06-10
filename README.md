@@ -15,3 +15,9 @@ Suggestions include
 The source data is located at
 * [San Francisco's food truck open dataset](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/data) 
 * [CSV dump of the latest data](https://data.sfgov.org/api/views/rqzj-sfat/rows.csv)
+
+# Approach
+
+This project amuses me because I do live in SF.  I'm therefore focussing my solution on something that would be immediately useful for myself, being able to geo locate food trucks.
+
+I'm doing just a CLI for now as that allows me to focus on features instead of delivery platform.  I would like there to be filters for "open now" and for style of food.  However, my casual observation of the data shows that the open times would require sanitizing, so I'm probably just going to focus on geo location for initial work.
