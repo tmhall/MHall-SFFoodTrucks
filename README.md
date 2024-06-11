@@ -24,7 +24,9 @@ I'm doing just a CLI for now as that allows me to focus on features instead of d
 
 ## Dependencies
 
-This relies on the following cpan modules outside of core:
+This relies on only Perl v5.16.
+
+It also uses the following cpan modules outside of core:
 * JSON
 * Path::Tiny
 * Test::Deep
