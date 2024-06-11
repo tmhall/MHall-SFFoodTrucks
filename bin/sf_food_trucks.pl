@@ -27,6 +27,7 @@ sub main {
         'alamo_square' => \my $opt_alamo_square,
         'latitude=f'   => \my $opt_latitude,
         'longitude=f'  => \my $opt_longitude,
+        'radius=f'     => \my $opt_radius,
         'help'         => \my $opt_help,
         )
         or pod2usage(1);
@@ -49,11 +50,16 @@ sub main {
         pod2usage( -msg => '--longitude must be specified with a --latitude', -verbose => 1 );
     }
 
+    if ( $opt_radius && ( !$opt_latitude || !$opt_longitude ) ) {
+        pod2usage( -msg => '--radius is meaningless without a --latitude and --longitude', -verbose => 1 );
+    }
+
     if ($opt_list) {
         print_food_trucks(
             is_active => !$opt_all_statuses,
             latitude  => $opt_latitude,
             longitude => $opt_longitude,
+            radius    => $opt_radius,
         );
 
     } else {
@@ -67,8 +73,9 @@ sub print_food_trucks {
     my %args = @_;
 
     my $is_active = delete $args{is_active};
-    my $latitude = delete $args{latitude};
+    my $latitude  = delete $args{latitude};
     my $longitude = delete $args{longitude};
+    my $radius    = delete $args{radius};
 
     confess "Unrecognized parameters: @{[ keys %args ]}" if keys %args;
 
@@ -76,6 +83,7 @@ sub print_food_trucks {
         is_active => $is_active,
         latitude  => $latitude,
         longitude => $longitude,
+        radius    => $radius,
     );
 
     if ( $latitude && $longitude ) {
@@ -126,6 +134,10 @@ Latitude from which to calculate distance
 =item --longitude <longitude>
 
 Latitude from which to calculate distance
+
+=item --radius <miles>
+
+Filter out food trucks outside of a given radius
 
 =item --help -?
 

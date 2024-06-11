@@ -27,6 +27,7 @@ sub list_sf_food_trucks {
     my $is_active = delete $args{is_active};
     my $latitude  = delete $args{latitude};
     my $longitude = delete $args{longitude};
+    my $radius    = delete $args{radius};
 
     confess "Unrecognized parameters: @{[ keys %args ]}" if keys %args;
 
@@ -42,6 +43,12 @@ sub list_sf_food_trucks {
                 latitude  => $latitude,
                 longitude => $longitude,
             );
+        }
+
+        if ($radius) {
+            my $distance = $food_truck->distance_in_miles;
+
+            next if !defined $distance || $distance > $radius;
         }
 
         push @food_trucks, $food_truck;
