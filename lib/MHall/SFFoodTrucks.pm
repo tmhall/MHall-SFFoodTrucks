@@ -25,6 +25,8 @@ sub list_sf_food_trucks {
 
     my $csv_file  = delete $args{csv_file};
     my $is_active = delete $args{is_active};
+    my $latitude  = delete $args{latitude};
+    my $longitude = delete $args{longitude};
 
     confess "Unrecognized parameters: @{[ keys %args ]}" if keys %args;
 
@@ -34,6 +36,13 @@ sub list_sf_food_trucks {
 
     for my $food_truck (@all_food_trucks) {
         next if $is_active && !$food_truck->is_active;
+
+        if ( $latitude && $longitude ) {
+            $food_truck->calculate_distance(
+                latitude  => $latitude,
+                longitude => $longitude,
+            );
+        }
 
         push @food_trucks, $food_truck;
     }

@@ -7,6 +7,8 @@ use v5.16;
 use Carp qw(confess);
 use Tie::IxHash;
 
+use MHall::Geo::Distance qw(great_circle_miles);
+
 sub new {
     my $pkg  = shift;
     my %args = @_;
@@ -185,6 +187,16 @@ sub expiration_date {
     return $self->{expiration_date};
 }
 
+sub distance_in_miles {
+    my $self = shift;
+
+    if (@_) {
+        $self->{distance_in_miles} = shift;
+    }
+
+    return $self->{distance_in_miles};
+}
+
 ### 
 
 sub is_active {
@@ -199,6 +211,28 @@ sub is_active {
 
     # Could also add a filter for expiration_date, but I'm betting that would automatically
     # result in a change in status anyway.
+}
+
+sub calculate_distance {
+    my $self = shift;
+    my %args = @_;
+
+    my $src_latitude  = delete $args{latitude}  or confess "latitude is required";
+    my $src_longitude = delete $args{longitude} or confess "longitude is required";
+
+    confess "Unrecognized parameters: @{[ keys %args ]}" if keys %args;
+
+    return unless my $latitude = $self->latitude;
+    return unless my $longitude = $self->longitude;
+
+    my $miles = great_circle_miles(
+        lat1 => $src_latitude,
+        lon1 => $src_longitude,
+        lat2 => $latitude,
+        lon2 => $longitude,
+    );
+
+    return $self->distance_in_miles($miles);
 }
 
 ###
@@ -217,6 +251,7 @@ sub TO_JSON {
         longitude
         days_hours
         expiration_date
+        distance_in_miles
     );
 
     tie my %hash, 'Tie::IxHash', (%$self);
