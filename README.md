@@ -45,8 +45,12 @@ This is implemented as a CLI at this time
 
 ## Next Steps
 
-Currently this is only a minimal implementation.
+This accomplishes my primary goal of bring able to filter trucks by location and radius.
 
-The next steps would be
-* Geo Location
-* Additional Search terms
+Potential additional features include
+* Additional Search terms like food type
+* Filtering by open status
+* Specify location via zip code
+* Pre-sanitizing Food truck data for lat/lon if it has an address
+* Ability to detect if external food truck data has changed from cached results and update it.
+
