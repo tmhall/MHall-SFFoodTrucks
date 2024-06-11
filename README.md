@@ -20,7 +20,7 @@ The source data is located at
 
 This project amuses me because I do live in SF.  I'm therefore focussing my solution on something that would be immediately useful for myself, being able to geo locate food trucks.
 
-I'm doing just a CLI for now as that allows me to focus on features instead of delivery platform.  I would like there to be filters for "open now" and for style of food.  However, my casual observation of the data shows that the open times would require sanitizing, so I'm probably just going to focus on geo location for initial work.
+I'm doing just a CLI for now as that allows me to focus on features instead of delivery method.  I would like there to be filters for "open now" and for style of food.  However, my casual observation of the data shows that the open times would require sanitizing, so I'm probably just going to focus on geo location for initial work.
 
 ## Dependencies
 
@@ -47,7 +47,7 @@ This is implemented as a CLI at this time
 
 ## Next Steps
 
-This accomplishes my primary goal of bring able to filter trucks by location and radius.
+This accomplishes my primary goal of being able to filter trucks by location and radius.
 
 Potential additional features include
 * Additional Search terms like food type
